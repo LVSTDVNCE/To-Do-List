@@ -1,6 +1,5 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import  Select  from '../Select/Select';
 
 interface InputTodoProps {
   addTodo: (nameTask: string, description: string, day: string, priority: string, level: string) => void;
@@ -33,29 +32,24 @@ const InputTodo: React.FC<InputTodoProps> = ({ addTodo }) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <input type="text" {...register('nameTask')}/>
       <input type="text" {...register('description')}/>
-      <Select {...register('day')} options={days}/>
-      <Select {...register('priority')} options={priority}/>
-      <Select {...register('level')} options={level}/>
+      <select {...register('day')}>
+        {days.map((value) => (
+          <option value={value}>{value}</option>
+        ))}
+      </select>
+      <select {...register('priority')}>
+        {priority.map((value) => (
+          <option value={value}>{value}</option>
+        ))}
+      </select>
+      <select {...register('level')}>
+        {level.map((value) => (
+          <option value={value}>{value}</option>
+        ))}
+      </select>
       <button>Add Todo</button>
     </form>
   );
 };
 
 export default InputTodo;
-
-
-      //<select {...register('day')}>
-      //  {days.map((value) => (
-      //    <option value={value}>{value}</option>
-      //  ))}
-      //</select>
-      //<select {...register('priority')}>
-      //  {priority.map((value) => (
-      //    <option value={value}>{value}</option>
-      //  ))}
-      //</select>
-      //<select {...register('level')}>
-      //  {level.map((value) => (
-      //    <option value={value}>{value}</option>
-      //  ))}
-      //</select>
