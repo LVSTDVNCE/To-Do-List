@@ -13,7 +13,7 @@ interface IForm {
   level: string,
 }
 
-const days = ['Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const days = ['', 'Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const priority = ['High', 'Medium', 'Low'];
 const level = ['Easy', 'Moderate', 'Hard'];
 
