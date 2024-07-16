@@ -126,17 +126,3 @@ const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete, removeTodo }
 };
 
 export default TodoList;
-
-        //<div className="board">
-        //  <div className="board__title"><img src="./img/todo.svg" alt=""  className='board__img'/>To-Do</div>
-        //    {todos.map((todo) => (
-        //      <div>
-        //        <TaskTodo 
-        //          key={todo.id} 
-        //          todo={todo}
-        //          toggleComplete={toggleComplete} 
-        //          removeTodo={removeTodo}
-        //        />
-        //      </div>
-        //    ))}
-        //</div>
