@@ -16,7 +16,7 @@ const TaskTodo: React.FC<TaskTodoProps> = ({ todo, toggleComplete, removeTodo })
   }
 
   var displayNone: string;
-  (todo.day == '') ? displayNone = 'none' : displayNone = 'flex';
+  (todo.day === '') ? displayNone = 'none' : displayNone = 'flex';
 
   var color:string;
   (todo.priority === 'High') ? color = '#E42C5F' : (todo.priority === 'Medium') ? color = '#F9D100' : color = '#2D41A7';

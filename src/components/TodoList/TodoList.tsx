@@ -11,7 +11,6 @@ interface TodoListProps {
   removeTodo: (id: number) => void;
 }
 
-
 const onDragEnd = (result:any, columns:any, setColumns:any) => {
   if (!result.destination) return;
   const { source, destination } = result;
@@ -50,14 +49,14 @@ const onDragEnd = (result:any, columns:any, setColumns:any) => {
 };
 
 const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete, removeTodo }) => {
+  var todoss = todos;
+  const [itemss, setItems] = useState<Todo[]>(todoss);
 
-  var tasks = todos
-  console.log(tasks)
   const taskStatus = {
     toDo: {
       name: "To-Do",
       img: "./img/todo.svg",
-      items: tasks
+      items: itemss
     },
     done: {
       name: "Done",
@@ -72,6 +71,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete, removeTodo }
       <div className='TodoList'>
       <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
       {Object.entries(columns).map(([columnId, column]) => {
+        console.log(column)
             return (
               <div
                 key={columnId}
