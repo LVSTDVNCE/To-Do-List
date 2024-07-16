@@ -42,7 +42,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className='App'>
       <InputTodo addTodo={addTodo} />
       <TodoList todos={todos} toggleComplete={toggleComplete} removeTodo={removeTodo} />
     </div>

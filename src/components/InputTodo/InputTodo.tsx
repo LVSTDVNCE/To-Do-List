@@ -1,5 +1,6 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import './InputTodo.css';
 
 interface InputTodoProps {
   addTodo: (nameTask: string, description: string, day: string, priority: string, level: string) => void;
@@ -29,26 +30,28 @@ const InputTodo: React.FC<InputTodoProps> = ({ addTodo }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="text" {...register('nameTask')}/>
-      <input type="text" {...register('description')}/>
-      <select {...register('day')}>
-        {days.map((value) => (
-          <option value={value}>{value}</option>
-        ))}
-      </select>
-      <select {...register('priority')}>
-        {priority.map((value) => (
-          <option value={value}>{value}</option>
-        ))}
-      </select>
-      <select {...register('level')}>
-        {level.map((value) => (
-          <option value={value}>{value}</option>
-        ))}
-      </select>
-      <button>Add Todo</button>
-    </form>
+    <div className='InputTodo'>
+      <form onSubmit={handleSubmit(onSubmit)} className='InputTodo__form'>
+        <input type="text" {...register('nameTask')} className='InputTodo__input'/>
+        <input type="text" {...register('description')} className='InputTodo__input'/>
+        <select {...register('day')} className='InputTodo__select'>
+          {days.map((value) => (
+            <option value={value}>{value}</option>
+          ))}
+        </select>
+        <select {...register('priority')} className='InputTodo__select'>
+          {priority.map((value) => (
+            <option value={value}>{value}</option>
+          ))}
+        </select>
+        <select {...register('level')} className='InputTodo__select'>
+          {level.map((value) => (
+            <option value={value}>{value}</option>
+          ))}
+        </select>
+        <button className='InputTodo__button'>Add Todo</button>
+      </form>
+    </div>
   );
 };
 

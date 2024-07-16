@@ -1,0 +1,29 @@
+.TodoList {
+  width: 1231px;
+  height: 100%;
+  background-color: #2B1887;
+  display: flex;
+  padding: 40px;
+  margin-top: 10px;
+  justify-content: space-between;
+  border-radius: 32px;
+}
+
+.board {
+  width: 560.5px;
+  background-color: #D5CCFF;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.board__title {
+  font-family: 'DM Sans';
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 24px;
+  color: #2B1887;
+}
+
+.board__img {
+  margin-right: 16px;
+}
