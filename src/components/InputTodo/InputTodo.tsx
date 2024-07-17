@@ -23,7 +23,6 @@ const InputTodo: React.FC<InputTodoProps> = ({ addTodo }) => {
   const { register, handleSubmit } = useForm<IForm>();
 
   const onSubmit: SubmitHandler<IForm> = data => {
-    console.log(data)
     if(data.nameTask.trim() && data.description.trim()) {
       addTodo(data.nameTask, data.description, data.day, data.priority, data.level);
     }

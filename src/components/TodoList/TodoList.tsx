@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskTodo from '../TaskTodo/TaskTodo';
 import { Todo } from '../../types/types';
 import './TodoList.css';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
-
 
 interface TodoListProps {
   todos: Todo[];
@@ -11,7 +10,7 @@ interface TodoListProps {
   removeTodo: (id: number) => void;
 }
 
-const onDragEnd = (result:any, columns:any, setColumns:any) => {
+const onDragEnd = (result: DropResult, columns: any, setColumns: any) => {
   if (!result.destination) return;
   const { source, destination } = result;
 
@@ -26,12 +25,12 @@ const onDragEnd = (result:any, columns:any, setColumns:any) => {
       ...columns,
       [source.droppableId]: {
         ...sourceColumn,
-        items: sourceItems
+        items: sourceItems,
       },
       [destination.droppableId]: {
         ...destColumn,
-        items: destItems
-      }
+        items: destItems,
+      },
     });
   } else {
     const column = columns[source.droppableId];
@@ -42,86 +41,92 @@ const onDragEnd = (result:any, columns:any, setColumns:any) => {
       ...columns,
       [source.droppableId]: {
         ...column,
-        items: copiedItems
-      }
+        items: copiedItems,
+      },
     });
   }
 };
 
 const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete, removeTodo }) => {
-  var todoss = todos;
-  const [itemss, setItems] = useState<Todo[]>(todoss);
-
-  const taskStatus = {
+  const [columns, setColumns] = useState({
     toDo: {
       name: "To-Do",
       img: "./img/todo.svg",
-      items: itemss
+      items: todos,
     },
     done: {
       name: "Done",
       img: "./img/done.svg",
-      items: []
-    }
-  };
+      items: [],
+    },
+  });
 
-  const [columns, setColumns] = useState(taskStatus);
+  useEffect(() => {
+    setColumns((prevColumns) => ({
+      ...prevColumns,
+      toDo: {
+        ...prevColumns.toDo,
+        items: todos,
+      },
+    }));
+  }, [todos]);
 
   return (
-      <div className='TodoList'>
+    <div className='TodoList'>
       <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
-      {Object.entries(columns).map(([columnId, column]) => {
-        console.log(column)
-            return (
-              <div
-                key={columnId}
-              >
-                <div>
-                  <Droppable droppableId={columnId} key={columnId}>
-                    {(provided) => {
-                      return (
-                        <div className='board'
-                          {...provided.droppableProps}
-                          ref={provided.innerRef}
-                        >
-                          <div className="board__title"><img src={column.img} alt="" className='board__img'/>{column.name}</div>
-                          {column.items.map((item, index) => {
-                            return (
-                              <Draggable
-                                key={item.id}
-                                draggableId={item.id.toString()}
-                                index={index}
-                              >
-                                {(provided) => {
-                                  return (
-                                    <div
-                                      ref={provided.innerRef}
-                                      {...provided.draggableProps}
-                                      {...provided.dragHandleProps}
-                                    >
-                                      <TaskTodo 
-                                        key={item.id} 
-                                        todo={item}
-                                        toggleComplete={toggleComplete} 
-                                        removeTodo={removeTodo}
-                                      />
-                                    </div>
-                                  );
-                                }}
-                              </Draggable>
-                            );
-                          })}
-                          {provided.placeholder}
+        {Object.entries(columns).map(([columnId, column]) => {
+          return (
+            <div key={columnId}>
+              <div>
+                <Droppable droppableId={columnId} key={columnId}>
+                  {(provided) => {
+                    return (
+                      <div
+                        className='board'
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                      >
+                        <div className="board__title">
+                          <img src={column.img} alt="" className='board__img' />
+                          {column.name}
                         </div>
-                      );
-                    }}
-                  </Droppable>
-                </div>
+                        {column.items.map((item: Todo, index: number) => {
+                          return (
+                            <Draggable
+                              key={item.id}
+                              draggableId={item.id.toString()}
+                              index={index}
+                            >
+                              {(provided) => {
+                                return (
+                                  <div
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                  >
+                                    <TaskTodo
+                                      key={item.id}
+                                      todo={item}
+                                      toggleComplete={toggleComplete}
+                                      removeTodo={removeTodo}
+                                    />
+                                  </div>
+                                );
+                              }}
+                            </Draggable>
+                          );
+                        })}
+                        {provided.placeholder}
+                      </div>
+                    );
+                  }}
+                </Droppable>
               </div>
-            );
-          })}
+            </div>
+          );
+        })}
       </DragDropContext>
-      </div>
+    </div>
   );
 };
 
