@@ -6,7 +6,7 @@ import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautif
 
 interface TodoListProps {
   todos: Todo[];
-  toggleComplete: (id: number) => void;
+  //toggleComplete: (id: number) => void;
   removeTodo: (id: number) => void;
 }
 
@@ -47,7 +47,7 @@ const onDragEnd = (result: DropResult, columns: any, setColumns: any) => {
   }
 };
 
-const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete, removeTodo }) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, removeTodo }) => {
   const [columns, setColumns] = useState({
     toDo: {
       name: "To-Do",
@@ -107,7 +107,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, toggleComplete, removeTodo }
                                     <TaskTodo
                                       key={item.id}
                                       todo={item}
-                                      toggleComplete={toggleComplete}
+                                      //toggleComplete={toggleComplete}
                                       removeTodo={removeTodo}
                                     />
                                   </div>

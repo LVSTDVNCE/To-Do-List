@@ -4,11 +4,11 @@ import './TaskTodo.css';
 
 interface TaskTodoProps {
   todo: Todo;
-  toggleComplete: (id: number) => void;
+  //toggleComplete: (id: number) => void;
   removeTodo: (id: number) => void;
 }
 
-const TaskTodo: React.FC<TaskTodoProps> = ({ todo, toggleComplete, removeTodo }) => {
+const TaskTodo: React.FC<TaskTodoProps> = ({ todo, removeTodo }) => {
   
   function truncate(str:string, maxlength:number) {
     return (str.length > maxlength) ?
@@ -23,12 +23,12 @@ const TaskTodo: React.FC<TaskTodoProps> = ({ todo, toggleComplete, removeTodo })
 
   return (
     <div className='TaskTodo'>
-      <input
+      {/*<input
         type="checkbox"
         checked={todo.completed}
         onChange={() => toggleComplete(todo.id)}
         className='TaskTodo__input'
-      />
+      />*/}
       <div style={{ textDecoration: todo.completed ? 'line-through' : 'none' }} className='TaskTodo__name'>
         {todo.nameTask}
       </div>

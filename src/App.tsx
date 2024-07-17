@@ -29,13 +29,13 @@ const App: React.FC = () => {
     setTodos([...todos, newTodo]);
   };
 
-  const toggleComplete = (id: number) => {
-    setTodos(
-      todos.map(todo =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  };
+  //const toggleComplete = (id: number) => {
+  //  setTodos(
+  //    todos.map(todo =>
+  //      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+  //    )
+  //  );
+  //};
 
   const removeTodo = (id: number) => {
     setTodos(todos.filter(todo => todo.id !== id));
@@ -44,7 +44,7 @@ const App: React.FC = () => {
   return (
     <div className='App'>
       <InputTodo addTodo={addTodo} />
-      <TodoList todos={todos} toggleComplete={toggleComplete} removeTodo={removeTodo} />
+      <TodoList todos={todos} removeTodo={removeTodo} />
     </div>
   );
 };
