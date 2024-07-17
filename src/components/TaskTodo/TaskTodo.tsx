@@ -29,17 +29,17 @@ const TaskTodo: React.FC<TaskTodoProps> = ({ todo, removeTodo }) => {
         onChange={() => toggleComplete(todo.id)}
         className='TaskTodo__input'
       />*/}
-      <div style={{ textDecoration: todo.completed ? 'line-through' : 'none' }} className='TaskTodo__name'>
+      <div className='TaskTodo__name'>
         {todo.nameTask}
       </div>
-      <div style={{ textDecoration: todo.completed ? 'line-through' : 'none' }} className='TaskTodo__description'>
+      <div className='TaskTodo__description'>
         {todo.description}
       </div>
       <div className='InputTodo__day-PL'>
         <div style={{ backgroundColor: color, display: displayNone }} className='TaskTodo__day'>
           {truncate(todo.day, 4)}
         </div>
-        <div style={{ textDecoration: todo.completed ? 'line-through' : 'none', display:'flex' }} className='TaskTodo__PL'>
+        <div style={{ display:'flex' }} className='TaskTodo__PL'>
           <div  className='PL_item' style={{ backgroundColor: color }}></div>
           <div  className='PL_item' style={{ backgroundColor: (todo.level === 'Easy') ? '#D9D9D9' : (todo.level === 'Moderate') ? color : color }}></div>
           <div  className='PL_item' style={{ backgroundColor: (todo.level === 'Easy') ? '#D9D9D9' : (todo.level === 'Hard') ? color : '#D9D9D9' }}></div>
